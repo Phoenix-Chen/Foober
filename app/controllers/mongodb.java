@@ -134,7 +134,7 @@ public class mongodb
         Document cook = cooks_coll.find(new Document("_id", cook_id)).first();
         posts_array = (ArrayList<String>)cook.get("posts");
 
-        for (int i = 0; i < 3 * ((posts_array.size() + 1) % 3); i++)
+        for (int i = 0; i < (3 * (posts_array.size()/3)); i++)
         {
             Document doc = posts_coll.find(new Document("_id", posts_array.get(posts_array.size() - i - 1))).first();
             if(doc.getString("status").equals(status))
@@ -143,7 +143,6 @@ public class mongodb
         return array;
     }
 
-    //user make an order, add the user id to the users array in the post
     public static String addPost(String cook_id, String json)
     {
         Document cook;
@@ -157,7 +156,7 @@ public class mongodb
 
         for (String s : ary)
         {
-            array.add(s);
+            ing_array.add(s);
         }
 
         try
