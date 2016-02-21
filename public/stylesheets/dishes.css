@@ -52,5 +52,40 @@ body {
 	padding-top: 10px;
 }
 
+.foodNameModal {
+	font-size: 40px;
+}
 
+.creatorModal {
+	font-size: 20px;
+}
+
+.foodDescModal {
+	font-size: 15px;
+}
+
+.foodDescTitleModal {
+	font-size: 25px;
+}
+
+.priceModal {
+	font-size: 40px;
+	padding-top: 10px;
+}
+
+.arrivalModal {
+	font-size: 17px;
+}
+
+.imgCover {
+	object-fit: cover;
+}
+
+.foodImg {
+	padding-top: 20px;
+}
+
+.modal {
+	color: #000000;
+}
 
