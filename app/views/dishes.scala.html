@@ -112,8 +112,8 @@
 						<div class="row">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="pull-right">
-									<button type="button" class="btn btn-danger-outline">Cancel</button>
-									<button type="button" class="btn btn-success-outline">Place order</button>
+									<button type="button" class="btn btn-danger-outline" onclick="dismissOrderModal()">Cancel</button>
+									<button type="button" class="btn btn-success-outline" onclick="placeOrder()">Place order</button>
 								</div>
 							</div>
 						</div>
@@ -122,6 +122,24 @@
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+
+
+	<!--Modal-->
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="loadingModal" role="document">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="card-block">
+						<div class="row" id="loadingStatus">
+							Loading...
+						</div>
+					</div>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
 
 
 	<footer class="container-fluid text-center">

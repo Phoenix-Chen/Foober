@@ -29,7 +29,6 @@ function setModals(i) {
     $('#modal-description').html(obj[i].description);
     $('#modal-ingradients').html(obj[i].ingradient);
     $('#orderBtn').click(function() {
-      console.log("clicked!");
         $('#foodModal').modal('hide');
         $('#orderModal').modal('show');
     });
@@ -51,4 +50,21 @@ function goToProfile(cId) {
 function triggerOrderModal() {
     $('#foodModal').modal('hide');
     $('#orderModal').modal('show');
+}
+
+function dismissOrderModal() {
+  $('#orderModal').modal('hide');
+}
+
+function placeOrder() {
+  $('#orderModal').modal('hide');
+  $('#loadingModal').modal('show');
+
+  setTimeout(function(){
+    $('#loadingStatus').html('Uber request sent! Your delivery will arrive within 30 mins.');
+    setTimeout(function() {
+      $('#loadingModal').modal('hide');
+      $('#loadingModal').html('Loading...');
+    }, 3000);
+  }, 3000)
 }
