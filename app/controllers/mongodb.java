@@ -6,9 +6,11 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import org.json.*;
 import org.bson.*;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class mongodb
 {
@@ -137,20 +139,33 @@ public class mongodb
     }
 
     //user make an order, add the user id to the users array in the post
-    public static boolean makeOrder(String post_id, String user_id)
+    public static String addPost(String cook_id, String json)
     {
         MongoCollection<Document> posts_coll = db.getCollection("posts");
-        Document doc = posts_coll.findOneAndUpdate(new Document("_id", post_id),
-                                                    new Document("$addToSet", new Document("posts", user_id)));
+        JSONObject obj = new JSONObject(json);
+        String ingredient = (String)obj.get("ingradient");
+        String[] ary = ingredient.split(", ");
+        List<String> array = new ArrayList<>();
 
-        ArrayList<String> posts_array = (ArrayList<String>)doc.get("users");
-        if(posts_array.size() == doc.getInteger("serving"))
+        for (String s : ary)
         {
-            posts_coll.findOneAndUpdate(new Document("_id", post_id),
-                                        new Document("$set", new Document("status", false)));
-            return false;
+            array.add(s);
         }
-        return true;
+
+        try
+        {
+            Document doc = new Document("title", obj.getString("title"))
+                    .append("serving", obj.getInt("serving"))
+                    .append("description", obj.getString("description"))
+                    .append("ingradient", array)
+                    .append("cook_id", cook_id);
+
+            posts_coll.insertOne(doc);
+            return "success";
+        }
+        catch (Exception e) {
+            return "failure";
+        }
     }
 
 }
