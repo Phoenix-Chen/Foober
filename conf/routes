@@ -9,6 +9,8 @@ GET     /javascriptRoutes           controllers.Application.javascriptRoutes()
 GET     /                           controllers.Application.index()
 GET     /profile/:uId               controllers.Application.profile(uId: String)
 GET     /getposts                   controllers.Application.getPosts()
+GET     /getcooknamebyid/:cId       controllers.Application.getCookNameById(cId: String)
+
 POST    /newpost                    controllers.Application.newPost()
 
 
