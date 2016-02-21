@@ -162,3 +162,43 @@ function postDish(cId) {
         }
     });
 }
+
+function setModals(i) {
+    //alert(title);
+    $('#modal-top-img').attr("src","/assets/images/"+curObj[i].image_file);
+    $('#modal-low-img').attr("src","/assets/images/"+curObj[i].image_file);
+    $('#modal-title').html(curObj[i].title);
+    setCookName(curObj[i].cook_id);
+    $('#modal-price').html("$"+curObj[i].price+".00");
+    $('#modal-description').html(curObj[i].description);
+    $('#modal-ingradients').html(curObj[i].ingradient);
+    $('#orderBtn').click(function() {
+        $('#order-img').attr("src","/assets/images/"+curObj[i].image_file);
+        $('#foodModal').modal('hide');
+        setTimeout(function(){
+          $('#orderModal').modal('show');
+        }, 400);
+    });
+}
+
+function triggerOrderModal(i) {
+    $('#order-img').attr("src","/assets/images/"+curObj[i].image_file);
+    $('#foodModal').modal('hide');
+    $('#orderModal').modal('show');
+}
+
+function placeOrder() {
+  $('#orderModal').modal('hide');
+  $('#loadingStatus').html('Requesting an Uber driver from UberRush...');
+  $('#loadingModal').modal('show');
+
+  setTimeout(function(){
+    $('#loadingStatus').html('Uber request sent! Your delivery will arrive within 30 minutes.');
+    setTimeout(function() {
+      $('#loadingModal').modal('hide');
+    }, 3000);
+  }, 3000)
+}
+function dismissOrderModal() {
+  $('#orderModal').modal('hide');
+}
