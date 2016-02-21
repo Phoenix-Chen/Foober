@@ -157,7 +157,7 @@ public class mongodb
 
         for (String s : ary)
         {
-            array.add(s);
+            ing_array.add(s);
         }
 
         try
