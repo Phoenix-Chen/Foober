@@ -29,6 +29,7 @@ function setModals(title, cId,price,description,ingradients) {
     $('#modal-description').html(description);
     $('#modal-ingradients').html(ingradients);
     $('#orderBtn').click(function() {
+      console.log("clicked!");
         $('#foodModal').modal('hide');
         $('#orderModal').modal('show');
     });
