@@ -129,7 +129,7 @@
 									<fieldset class="form-group">
 										<input type="text" class="form-control" name="lastname" id="nameOfDish"><br>
 										<div class="short-div dishName">How many plates are you making?</div>
-										<div class="addDishTitle"><input class="btn btn-default addDishTitle" type="button" value="-" onclick="decrementDishes()"><span id="numberOfDishes"> 5 </span><input class="btn btn-default addDishTitle" type="button" value="+" onclick="incrementDishes()"></div>
+										<div class="addDishTitle"><input class="btn btn-default addDishTitle" type="button" value="-" onclick="decrementDishes()"><span id="numberOfDishes">5</span><input class="btn btn-default addDishTitle" type="button" value="+" onclick="incrementDishes()"></div>
 										<div class="short-div addDishInstructions">Describe your dish in a few sentences</div>
 										<textarea class="form-control" id="descriptionOfDish" rows="4"></textarea>
 										<br>
@@ -208,6 +208,21 @@
 									<p class="card-text"><small class="text-muted">15 min left</small></p>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+		<!--Modal-->
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="loadingModal" role="document">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="card-block">
+						<div class="row" id="loadingStatus">
+							Loading...
 						</div>
 					</div>
 				</div>
