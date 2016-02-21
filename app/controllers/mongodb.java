@@ -132,7 +132,7 @@ public class mongodb
 
         //find a specific cook
         Document cook = cooks_coll.find(new Document("_id", cook_id)).first();
-        posts_array = (ArrayList<String>)cook.get("posts").;
+        posts_array = (ArrayList<String>)cook.get("posts");
 
         for (int i = 0; i < 3 * ((posts_array.size() + 1) % 3); i++)
         {
