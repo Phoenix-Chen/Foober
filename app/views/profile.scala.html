@@ -11,6 +11,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
 	<link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/profile.css")'>
+	<link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/dishes.css")'>
 
 	<!-- Javascript Routes -->
     <script type="text/javascript" src='@routes.Application.javascriptRoutes()'></script>
@@ -110,101 +111,34 @@
 	</div><br>
 
 	<!--Modal-->
-	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="addFoodModal">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="card-block">
-						<div class="row">
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-								<div class="short-div addDishTitle">Share a new dish</div>
-								<div class="short-div addDishInstructions">Complete the following form to let your neighbors know what you've cooked!</div><br>
-								<div class="short-div dishName">Dish name</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-								<form>
-									<fieldset class="form-group">
-										<input type="text" class="form-control" name="lastname" id="nameOfDish"><br>
-										<div class="short-div dishName">How many plates are you making?</div>
-										<div class="addDishTitle"><input class="btn btn-default addDishTitle" type="button" value="-" onclick="decrementDishes()"><span id="numberOfDishes">5</span><input class="btn btn-default addDishTitle" type="button" value="+" onclick="incrementDishes()"></div>
-										<div class="short-div addDishInstructions">Describe your dish in a few sentences</div>
-										<textarea class="form-control" id="descriptionOfDish" rows="4"></textarea>
-										<br>
-										<div class="short-div addDishTitle">Food allergens</div>
-										<div class="short-div addDishInstructions">Be sure to check all boxes that may apply to your dish. Your dish contains:</div><br>
-										<div class="row text-left">
-											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-												<input type="checkbox" id="peanuts" value="pea"> Peanuts <br>
-												<input type="checkbox" id="treeNuts" value="tree"> Tree nuts <br>
-												<input type="checkbox" id="chocolate" value="choc"> Chocolate <br>
-												<input type="checkbox" id="seafood" value="sea"> Seafood <br>
-											</div>
-											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-												<input type="checkbox" id="gluten" value="glut"> Gluten <br>
-												<input type="checkbox" id="soy" value="soy"> Soy <br>
-												<input type="checkbox" id="dairy" value="dairy"> Dairy <br>
-												<input type="checkbox" id="eggs" value="eggs"> Eggs <br>
-											</div>
-										</div>
-									</fieldset>
-								</form>
-							</div>
-							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
-								<!--Add code for drag/drop image here-->
-								<img src="@routes.Assets.versioned("images/Dropzone.png")" width=150px/>
-							</div>
-						</div><br>
-						<div class="row">
-							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-								<div class="pull-right">
-									<button type="button" class="btn btn-danger-outline" data-dismiss="modal">Cancel</button>
-								</div>
-							</div>
-							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-								<div class="pull-right">
-									<button type="button" class="btn btn-success-outline" onclick="postDish('@cId')">Post dish</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-	<!--Modal-->
 	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="foodModal">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<img class="card-img-top img-responsive" src="http://placehold.it/150x80?text=IMAGE" style="width:100%" alt="Food pic">
+					<img  id="modal-top-img" class="card-img-top img-responsive" src="http://placehold.it/150x80?text=IMAGE" style="width:100%" alt="Food pic">
 					<div class="card-block">
 						<div class="row">
 							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-								<div class="short-div foodNameModal">Food Name</div>
-								<div class="short-div creatorModal">Prepared by: Name of Creator</div>
+								<div class="short-div foodNameModal" id="modal-title"></div>
+								<div class="short-div creatorModal" id="modal-provider"></div>
 							</div>
 							<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
-								<div class="priceModal">$10.00</div>
+								<div class="priceModal" id="modal-price"></div>
 								<div class="arrivalModal">Arrives within 30 min</div>
 							</div>
 						</div>
 						<hr>
 						<div class="row">
 							<div class="col-lg-7 col-md-7 col-sm-5 col-xs-7">
-								<div class="short-div foodDescTitleModal">Taste the freshness</div>
-								<div class="short-div foodDescModal"><p>This is a very long description for the food that is shown above. It is so long, in fact, that it goes onto multiple lines. It is so long that most people will not read this entire paragraph. If you are still reading this, then you are the hero that Gotham deserves.</p></div>
+								<div class="short-div foodDescTitleModal" id="modal-description"></div>
+								<div class="short-div foodDescModal"><p id="modal-ingradients"></p></div>
 							</div>
-							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-5 imgCover"><img class="img-responsive foodImg" src="http://placehold.it/150x80?text=IMAGE" style="width:100%" alt="Food pic"></div>
+							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-5 imgCover"><img id="modal-low-img" class="img-responsive foodImg" src="http://placehold.it/150x80?text=IMAGE" style="width:100%" alt="Food pic"></div>
 						</div>
 						<div class="row">
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="pull-right">
-									<button type="button" class="btn btn-success-outline">Order now</button>
+									<button type="button" class="btn btn-success-outline" id="orderBtn">Order now</button>
 									<p class="card-text"><small class="text-muted">15 min left</small></p>
 								</div>
 							</div>
@@ -215,7 +149,49 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-		<!--Modal-->
+
+	<!--Modal-->
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="orderModal" role="document">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<img id="order-img" class="card-img-top img-responsive" src="http://placehold.it/150x80?textsrc=IMAGE" style="width:100%" alt="Food pic">
+					<div class="card-block">
+						<div class="row">
+							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+								<div class="short-div"><p style="font-size: 20px">Place a new order</p></div>
+								<div class="short-div">
+									<p style="margin: 0">Where to deliver? <span style="font-size: 10px">(Please be specific)</span></p>
+									<textarea rows="3" style="width: 100%"></textarea>
+
+									<div class="short-div" style="margin: 0"><p>Tip amount:</p></div>
+									<div class="addDishTitle"><input class="btn btn-default addDishTitle" type="button" value="-" onclick="decrementTip()"><span id='tipAmount'>20</span><input class="btn btn-default addDishTitle" type="button" value="+" onclick="incrementTip()"> %</div>
+									<div>
+										<p style="margin: 0">Few words to the cook:</p>
+										<input type="text" />
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
+								<div class="short-div"><img src='@routes.Assets.versioned("images/order_details.png")' width="100%"/></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="pull-right">
+									<button type="button" class="btn btn-danger-outline" onclick="dismissOrderModal()">Cancel</button>
+									<button type="button" class="btn btn-success-outline" onclick="placeOrder()">Place order</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<!--Modal-->
 	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="loadingModal" role="document">
 		<div class="modal-dialog">
 			<div class="modal-content">
