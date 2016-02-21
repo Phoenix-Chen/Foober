@@ -62,14 +62,19 @@ public class mongodb
     //use iterator<Document> to access the individual data
     public static ArrayList<Document> find(String collection)
     {
-        ArrayList<Document> array = new ArrayList<Document>();
+        ArrayList<Document> array = new ArrayList<>();
 
         MongoCollection<Document> coll = db.getCollection(collection);
+        long size = coll.count();
         Iterator<Document> i = coll.find().iterator();
-        while(i.hasNext())
+        for (int j = 0; i.hasNext(); j++)
         {
+            if(j == (3 * (size / 3)))
+                break;
             array.add(i.next());
         }
+
+        System.out.println("size:" + array.size());
 
         return array;
     }
@@ -127,11 +132,11 @@ public class mongodb
 
         //find a specific cook
         Document cook = cooks_coll.find(new Document("_id", cook_id)).first();
-        posts_array = (ArrayList<String>)cook.get("posts");
+        posts_array = (ArrayList<String>)cook.get("posts").;
 
-        for (int i = 0; i < posts_array.size(); i++)
+        for (int i = 0; i < 3 * ((posts_array.size() + 1) % 3); i++)
         {
-            Document doc = posts_coll.find(new Document("_id", posts_array.get(i))).first();
+            Document doc = posts_coll.find(new Document("_id", posts_array.get(posts_array.size() - i - 1))).first();
             if(doc.getString("status").equals(status))
                 array.add(doc);
         }
@@ -141,11 +146,14 @@ public class mongodb
     //user make an order, add the user id to the users array in the post
     public static String addPost(String cook_id, String json)
     {
+        Document cook;
         MongoCollection<Document> posts_coll = db.getCollection("posts");
+        MongoCollection<Document> cooks_coll = db.getCollection("cooks");
         JSONObject obj = new JSONObject(json);
-        String ingredient = (String)obj.get("ingradient");
-        String[] ary = ingredient.split(", ");
-        List<String> array = new ArrayList<>();
+        String ingradient = (String)obj.get("ingradient");
+        String[] ary = ingradient.split(", ");
+        List<String> ing_array = new ArrayList<>();
+        List<String> posts_array = new ArrayList<>();
 
         for (String s : ary)
         {
@@ -157,10 +165,19 @@ public class mongodb
             Document doc = new Document("title", obj.getString("title"))
                     .append("serving", obj.getInt("serving"))
                     .append("description", obj.getString("description"))
-                    .append("ingradient", array)
+                    .append("ingradient", ing_array)
                     .append("cook_id", cook_id);
 
+            cook = cooks_coll.find(new Document("_id", cook_id)).first();
+            String posts = cook.getString("ingradient");
+            ary = posts.split(", ");
+            for (String s : ary)
+            {
+                posts_array.add(s);
+            }
+
             posts_coll.insertOne(doc);
+            cooks_coll.updateOne(new Document("_id", cook_id), new Document("posts", posts_array));
             return "success";
         }
         catch (Exception e) {
