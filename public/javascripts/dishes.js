@@ -30,7 +30,9 @@ function setModals(i) {
     $('#modal-ingradients').html(obj[i].ingradient);
     $('#orderBtn').click(function() {
         $('#foodModal').modal('hide');
-        $('#orderModal').modal('show');
+        setTimeout(function(){
+          $('#orderModal').modal('show');
+        }, 400);
     });
 }
 
@@ -44,7 +46,7 @@ function setCookName(cId) {
 
 function goToProfile(cId) {
     var url = myJsRoutes.controllers.Application.profile(cId).url;
-    window.location.href = url;    
+    window.location.href = url;
 }
 
 function triggerOrderModal() {
@@ -54,6 +56,21 @@ function triggerOrderModal() {
 
 function dismissOrderModal() {
   $('#orderModal').modal('hide');
+}
+
+function decrementTip() {
+    var numPlates = parseInt(document.getElementById("tipAmount").innerHTML);
+    numPlates = numPlates - 1;
+    if(numPlates <= 0){
+        numPlates = 0;
+    }
+    document.getElementById("tipAmount").innerHTML = numPlates;
+}
+
+function incrementTip() {
+    var numPlates = parseInt(document.getElementById("tipAmount").innerHTML);
+    numPlates = numPlates + 1;
+    document.getElementById("tipAmount").innerHTML = numPlates;
 }
 
 function placeOrder() {
