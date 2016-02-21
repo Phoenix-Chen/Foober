@@ -77,13 +77,13 @@ function incrementTip() {
 
 function placeOrder() {
   $('#orderModal').modal('hide');
+  $('#loadingStatus').html('Requesting an Uber driver from UberRush...');
   $('#loadingModal').modal('show');
 
   setTimeout(function(){
-    $('#loadingStatus').html('Uber request sent! Your delivery will arrive within 30 mins.');
+    $('#loadingStatus').html('Uber request sent! Your delivery will arrive within 30 minutes.');
     setTimeout(function() {
       $('#loadingModal').modal('hide');
-      $('#loadingModal').html('Loading...');
     }, 3000);
   }, 3000)
 }
