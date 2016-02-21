@@ -1,11 +1,9 @@
-@(message: String)
-
-@main("Foober - Dishes") {
+@(title: String)
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Foober</title>
+	<title>@title</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -13,6 +11,9 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
 	<link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/dishes.css")'>
+	
+	<!-- Javascript Routes -->
+    <script type="text/javascript" src='@routes.Application.javascriptRoutes()'></script>
 </head>
 <body>
 
@@ -42,7 +43,7 @@
 	
 	<div class="container text-center">    
 		<div class="greeting"><h3>Good afternoon, here are some delicious dishes near you.</h3></div><br>
-		<div class="card-deck-wrapper">
+		<div class="card-deck-wrapper" id="card-wrapper">
 			<div class="card-deck">
 				<div class="card"><a href="#" data-toggle="modal" data-target="#foodModal">
 					<img class="card-img-top img-responsive" src="http://placehold.it/150x80?text=IMAGE" style="width:100%" alt="Food pic"></a>
@@ -117,19 +118,19 @@
 					<div class="card-block">
 						<div class="row">
 							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-								<div class="short-div foodNameModal">Food Name</div>
-								<div class="short-div creatorModal">Prepared by: Name of Creator</div>
+								<div class="short-div foodNameModal" id="modal-title"></div>
+								<div class="short-div creatorModal" id="modal-provider">Prepared by: Name of Creator</div>
 							</div>
 							<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
-								<div class="priceModal">$10.00</div>
+								<div class="priceModal" id="modal-price"></div>
 								<div class="arrivalModal">Arrives within 30 min</div>
 							</div>
 						</div>
 						<hr>
 						<div class="row">
 							<div class="col-lg-7 col-md-7 col-sm-5 col-xs-7">
-								<div class="short-div foodDescTitleModal">Taste the freshness</div>
-								<div class="short-div foodDescModal"><p>This is a very long description for the food that is shown above. It is so long, in fact, that it goes onto multiple lines. It is so long that most people will not read this entire paragraph. If you are still reading this, then you are the hero that Gotham deserves.</p></div>
+								<div class="short-div foodDescTitleModal" id="modal-description"></div>
+								<div class="short-div foodDescModal"><p id="modal-ingradients"></p></div>
 							</div>
 							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-5 imgCover"><img class="img-responsive foodImg" src="http://placehold.it/150x80?text=IMAGE" style="width:100%" alt="Food pic"></div>
 						</div>
@@ -151,9 +152,14 @@
 	<footer class="container-fluid text-center">
 		<p>© Foober 2016</p>
 	</footer>
+	
+	<!-- jQuery -->
+	<script src="@routes.Assets.versioned("javascripts/jquery-1.12.0.min.js")"></script>
+
+	<!-- Custom JavaScript -->
+	<script src="@routes.Assets.versioned("javascripts/dishes.js")"></script>
 
 </body>
 </html>
 
 
-}
