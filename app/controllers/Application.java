@@ -40,13 +40,18 @@ public class Application extends Controller {
         return ok(name.getString("first") + " " + name.getString("last"));
     }
 
+    public Result getPostsByCook(String cId, String condition){
+        return ok(mongodb.getPosts(condition, cId).toArray().toString());
+    }
+
     public Result javascriptRoutes() {
         response().setContentType("text/javascript");
         return ok(
                 Routes.javascriptRouter("myJsRoutes",
                         controllers.routes.javascript.Application.getPosts(),
                         controllers.routes.javascript.Application.getCookNameById(),
-                        controllers.routes.javascript.Application.profile()
+                        controllers.routes.javascript.Application.profile(),
+                        controllers.routes.javascript.Application.getPostsByCook()
                 )
         );
     }
