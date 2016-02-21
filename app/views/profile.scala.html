@@ -249,26 +249,26 @@
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 								<form>
 									<fieldset class="form-group">
-										<input type="text" class="form-control" name="lastname"><br>
+										<input type="text" class="form-control" name="lastname" id="nameOfDish"><br>
 										<div class="short-div dishName">How many plates are you making?</div>
-										<div class="addDishTitle"><input class="btn btn-default addDishTitle" type="button" value="-"> 5 <input class="btn btn-default addDishTitle" type="button" value="+"></div>
+										<div class="addDishTitle"><input class="btn btn-default addDishTitle" type="button" value="-" onclick="decrementDishes()"><span id="numberOfDishes"> 5 </span><input class="btn btn-default addDishTitle" type="button" value="+" onclick="incrementDishes()"></div>
 										<div class="short-div addDishInstructions">Describe your dish in a few sentences</div>
-										<textarea class="form-control" id="exampleTextarea" rows="4"></textarea>
+										<textarea class="form-control" id="descriptionOfDish" rows="4"></textarea>
 										<br>
 										<div class="short-div addDishTitle">Food allergens</div>
 										<div class="short-div addDishInstructions">Be sure to check all boxes that may apply to your dish. Your dish contains:</div><br>
 										<div class="row text-left">
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-												<input type="checkbox" id="inlineCheckbox1" value="option1"> Peanuts <br>
-												<input type="checkbox" id="inlineCheckbox1" value="option1"> Tree nuts <br>
-												<input type="checkbox" id="inlineCheckbox1" value="option1"> Chocolate <br>
-												<input type="checkbox" id="inlineCheckbox1" value="option1"> Seafood <br>
+												<input type="checkbox" id="peanuts" value="pea"> Peanuts <br>
+												<input type="checkbox" id="treeNuts" value="tree"> Tree nuts <br>
+												<input type="checkbox" id="chocolate" value="choc"> Chocolate <br>
+												<input type="checkbox" id="seafood" value="sea"> Seafood <br>
 											</div>
 											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-												<input type="checkbox" id="inlineCheckbox1" value="option1"> Gluten <br>
-												<input type="checkbox" id="inlineCheckbox1" value="option1"> Soy <br>
-												<input type="checkbox" id="inlineCheckbox1" value="option1"> Dairy <br>
-												<input type="checkbox" id="inlineCheckbox1" value="option1"> Eggs <br>
+												<input type="checkbox" id="gluten" value="glut"> Gluten <br>
+												<input type="checkbox" id="soy" value="soy"> Soy <br>
+												<input type="checkbox" id="dairy" value="dairy"> Dairy <br>
+												<input type="checkbox" id="eggs" value="eggs"> Eggs <br>
 											</div>
 										</div>
 									</fieldset>
@@ -287,7 +287,7 @@
 							</div>
 							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 								<div class="pull-right">
-									<button type="button" class="btn btn-success-outline">Post dish</button>
+									<button type="button" class="btn btn-success-outline" onclick="postDish()">Post dish</button>
 								</div>
 							</div>
 						</div>
