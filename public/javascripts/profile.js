@@ -202,3 +202,18 @@ function placeOrder() {
 function dismissOrderModal() {
   $('#orderModal').modal('hide');
 }
+
+function decrementTip() {
+    var numPlates = parseInt(document.getElementById("tipAmount").innerHTML);
+    numPlates = numPlates - 1;
+    if(numPlates <= 0){
+        numPlates = 0;
+    }
+    document.getElementById("tipAmount").innerHTML = numPlates;
+}
+
+function incrementTip() {
+    var numPlates = parseInt(document.getElementById("tipAmount").innerHTML);
+    numPlates = numPlates + 1;
+    document.getElementById("tipAmount").innerHTML = numPlates;
+}
