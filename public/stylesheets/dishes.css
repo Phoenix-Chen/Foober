@@ -24,6 +24,33 @@ footer {
 	}
 }
 
+.card {
+	color: #000000;
+}
+
 body {
 	background-color: #D0021B;
+	color: #FFFFFF;
+	font-family: "Helvetica Light", "Helvetica";
+	font-weight: 100;
 }
+
+.greeting {
+	padding-top: 40px;
+}
+
+.foodName {
+	font-size: 30px;
+}
+
+.foodDesc {
+	font-size: 10px;
+}
+
+.price {
+	font-size: 30px;
+	padding-top: 10px;
+}
+
+
+
