@@ -7,8 +7,9 @@ GET     /javascriptRoutes           controllers.Application.javascriptRoutes()
 
 # Home page
 GET     /                           controllers.Application.index()
+GET     /profile/:uId               controllers.Application.profile(uId: String)
 GET     /getposts                   controllers.Application.getPosts()
-GET     /newpost                    controllers.Application.newPost()
+POST    /newpost                    controllers.Application.newPost()
 
 
 # Map static resources from the /public folder to the /assets URL path
