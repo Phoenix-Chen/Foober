@@ -6,8 +6,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.*;
-import java.util.Arrays;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -102,7 +100,14 @@ public class mongodb
     public static ArrayList<Document> findFreshPosts()
     {
         MongoCollection<Document> posts_coll = db.getCollection("posts");
-        return posts_coll.aggregate(Array.asList(new Document("$match", new Document("status", true))));
+        Iterator<Document> i = posts_coll.find(new Document("$match", new Document("status", true))).iterator();
+        ArrayList<Document> array = new ArrayList<>();
+        while(i.hasNext())
+        {
+            array.add(i.next());
+        }
+
+        return array;
     }
 
     //user make an order, add the user id to the users array in the post
