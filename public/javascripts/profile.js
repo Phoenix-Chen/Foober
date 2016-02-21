@@ -41,6 +41,7 @@ function setCurPosts(cId) {
 function setPastPosts(cId) {
     myJsRoutes.controllers.Application.getPostsByCook(cId,"unfresh").ajax({
         success : function(pastPostData) {
+            alert(pastPostData);
             
             pastObj = JSON.parse(pastPostData);
             var cardDeck = document.createElement('div');
