@@ -27,7 +27,7 @@
 	    return null;
 		}
 		$(document).ready(function(){
-			$('#loginedAs').html("Currently logged in as " + readCookie('username'));
+			$('#loginedAs').html("Currently logged in as " + (readCookie('username') || "customer"));
 
 			if (readCookie('username') == 'cook') {
 				$('#addAdish').show();
