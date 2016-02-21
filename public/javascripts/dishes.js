@@ -7,7 +7,7 @@ $(document).ready(function(){
             var cardDeck = document.createElement('div');
             cardDeck.className="card-deck";
             for(var i=0;i<obj.length;i++){
-                cardDeck.innerHTML=cardDeck.innerHTML+'<div class="card"><a href="#" onclick=\'setModals(\"'+i+'\")\' data-toggle="modal" data-target="#foodModal"><img class="card-img-top img-responsive" src=\"/assets/images/'+obj[i].image_file+'\" style="width:100%" alt="Food pic"></a><div class="card-block"><div class="row"><div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"><div class="short-div foodName">'+obj[i].title+'</div><div class="short-div foodDesc">'+obj[i].description+'</div></div><div class="col-lg-4 col-md-4 col-sm-6 col-xs-4 price">$'+obj[i].price+'.00</div></div><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="pull-right"><button type="button" class="btn btn-success-outline" onclick="triggerOrderModal()">Order now</button></div></div></div><br><div class="row"><p class="card-text"><small class="text-muted pull-right">*May contain peanuts and dairy products.</small></p></div></div></div>';
+                cardDeck.innerHTML=cardDeck.innerHTML+'<div class="card"><a href="#" onclick=\'setModals(\"'+i+'\")\' data-toggle="modal" data-target="#foodModal"><img class="card-img-top img-responsive" src=\"/assets/images/'+obj[i].image_file+'\" style="width:100%" alt="Food pic"></a><div class="card-block"><div class="row"><div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"><div class="short-div foodName">'+obj[i].title+'</div><div class="short-div foodDesc">'+obj[i].description+'</div></div><div class="col-lg-4 col-md-4 col-sm-6 col-xs-4 price">$'+obj[i].price+'.00</div></div><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><div class="pull-right"><button type="button" class="btn btn-success-outline" onclick="triggerOrderModal('+i+')">Order now</button></div></div></div><br><div class="row"><p class="card-text"><small class="text-muted pull-right">*May contain peanuts and dairy products.</small></p></div></div></div>';
                 if (i%3==2) {
                     $('#card-wrapper').append(cardDeck);
                     $('#card-wrapper').append('<br></br>')
@@ -29,6 +29,7 @@ function setModals(i) {
     $('#modal-description').html(obj[i].description);
     $('#modal-ingradients').html(obj[i].ingradient);
     $('#orderBtn').click(function() {
+        $('#order-img').attr("src","/assets/images/"+obj[i].image_file);
         $('#foodModal').modal('hide');
         setTimeout(function(){
           $('#orderModal').modal('show');
@@ -49,7 +50,8 @@ function goToProfile(cId) {
     window.location.href = url;
 }
 
-function triggerOrderModal() {
+function triggerOrderModal(i) {
+    $('#order-img').attr("src","/assets/images/"+obj[i].image_file);
     $('#foodModal').modal('hide');
     $('#orderModal').modal('show');
 }

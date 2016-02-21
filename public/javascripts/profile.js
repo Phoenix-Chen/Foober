@@ -8,9 +8,18 @@ function setCookName(cId) {
         });
 }
 
-function setCurPosts() {
-    myJsRoutes.controllers.Application.getPosts().ajax({
+function setProfilePic(cId) {
+    myJsRoutes.controllers.Application.getImageById(cId).ajax({
+        success : function(imgName) {
+            $('#cookImg').attr('src',"/assets/images/"+imgName);
+        }
+        });
+}
+
+function setCurPosts(cId) {
+    myJsRoutes.controllers.Application.getPostsByCook(cId,"fresh").ajax({
         success : function(curPostData) {
+            //alert(curPostData);
             curObj = JSON.parse(curPostData);
             var cardDeck = document.createElement('div');
             cardDeck.className="card-deck";
@@ -29,9 +38,10 @@ function setCurPosts() {
     });
 }
 
-function setPastPosts() {
-    myJsRoutes.controllers.Application.getPosts().ajax({
+function setPastPosts(cId) {
+    myJsRoutes.controllers.Application.getPostsByCook(cId,"unfresh").ajax({
         success : function(pastPostData) {
+            
             pastObj = JSON.parse(pastPostData);
             var cardDeck = document.createElement('div');
             cardDeck.className="card-deck";
@@ -65,7 +75,7 @@ function incrementDishes() {
     document.getElementById("numberOfDishes").innerHTML = numPlates;
 }
 
-function postDish() {
+function postDish(cId) {
     var dishName = $('#nameOfDish').val();
     var dishNum = document.getElementById("numberOfDishes").innerHTML;
     var dishDescription = $('#descriptionOfDish').val();
@@ -130,5 +140,12 @@ function postDish() {
         }
     }
 
-    var finalString = "{\"title\":\""+dishName+"\",\"serving\":"+dishNum+",\"description\":\""+dishDescription+"\",\"ingradient\":\""+ingredients+"\"}";
+    var finalString = "{\"title\":\""+dishName+"\",\"serving\":"+dishNum+",\"description\":\""+dishDescription+"\",\"ingradient\":\""+ingredients+"\",\"cook_id\":\""+cId+"\"}";
+    
+    myJsRoutes.controllers.Application.newPost(cId,finalString).ajax({
+        success : function(success) {
+            
+            alert(success);
+        }
+    });
 }

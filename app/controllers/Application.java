@@ -15,8 +15,8 @@ public class Application extends Controller {
         return ok(dishes.render("Foober"));
     }
 
-    public Result newPost() {
-        return ok(newpost.render("New Post"));
+    public Result newPost(String cId,String json) {
+        return ok(mongodb.addPost(cId,json));
     }
 
     public Result profile(String uId){ return ok(profile.render(uId)); }
@@ -40,8 +40,24 @@ public class Application extends Controller {
         return ok(name.getString("first") + " " + name.getString("last"));
     }
 
+    public Result getImageById(String cId){
+        Document cook = mongodb.find("cooks", cId);
+        Document name = (Document) cook.get("name");
+
+        return ok(name.getString("first") + name.getString("last")+".png");
+    }
+
     public Result getPostsByCook(String cId, String condition){
-        return ok(mongodb.getPosts(condition, cId).toArray().toString());
+        ArrayList<Document> arrayList = mongodb.getPosts(condition, cId);
+        String ret = "[";
+        Iterator<Document> i = arrayList.iterator();
+        while(i.hasNext())
+        {
+            ret += i.next().toJson().toString() + ",";
+        }
+        ret = ret.substring(0,ret.length()-1)+"]";
+        return ok(ret);
+        //return ok(mongodb.getPosts(condition,cId).toArray().toString());
     }
 
     public Result javascriptRoutes() {
@@ -51,7 +67,9 @@ public class Application extends Controller {
                         controllers.routes.javascript.Application.getPosts(),
                         controllers.routes.javascript.Application.getCookNameById(),
                         controllers.routes.javascript.Application.profile(),
-                        controllers.routes.javascript.Application.getPostsByCook()
+                        controllers.routes.javascript.Application.getPostsByCook(),
+                        controllers.routes.javascript.Application.getImageById(),
+                        controllers.routes.javascript.Application.newPost()
                 )
         );
     }
