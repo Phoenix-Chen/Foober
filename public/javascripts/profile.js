@@ -145,7 +145,7 @@ function postDish(cId) {
     myJsRoutes.controllers.Application.newPost(cId,finalString).ajax({
         success : function(success) {
             
-            alert(success);
+            alert(finalString);
         }
     });
 }
