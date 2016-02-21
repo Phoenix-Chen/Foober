@@ -5,7 +5,7 @@ function setCookName(cId) {
         success : function(cookName) {
             $('#cookName').html(cookName);
         }
-        });
+    });
 }
 
 function setProfilePic(cId) {
@@ -13,7 +13,7 @@ function setProfilePic(cId) {
         success : function(imgName) {
             $('#cookImg').attr('src',"/assets/images/"+imgName);
         }
-        });
+    });
 }
 
 function setCurPosts(cId) {
@@ -43,7 +43,7 @@ function setPastPosts(cId) {
     myJsRoutes.controllers.Application.getPostsByCook(cId,"unfresh").ajax({
         success : function(pastPostData) {
 
-            
+
             pastObj = JSON.parse(pastPostData);
             var cardDeck = document.createElement('div');
             cardDeck.className="card-deck";
@@ -147,8 +147,18 @@ function postDish(cId) {
     
     myJsRoutes.controllers.Application.newPost(cId,finalString).ajax({
         success : function(success) {
-            
-            alert(finalString);
+
+            //alert(finalString);
+            $('#addFoodModal').modal('hide');
+            $('#loadingStatus').html('Processing...');
+            $('#loadingModal').modal('show');
+
+            setTimeout(function(){
+                $('#loadingStatus').text('Dish posted! You will be notified when a customer orders your dish.');
+                setTimeout(function() {
+                  $('#loadingModal').modal('hide');
+              }, 3000);
+            }, 3000);
         }
     });
 }
