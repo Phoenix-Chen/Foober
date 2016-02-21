@@ -1,0 +1,91 @@
+/* Remove the navbar's default margin-bottom and rounded borders */ 
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+/* Add a gray background color and some padding to the footer */
+footer {
+	background-color: #333333;
+	padding: 25px;
+	color: #FFFFFF;
+}
+
+.carousel-inner img {
+	width: 100%; /* Set width to 100% */
+	margin: auto;
+	min-height:200px;
+}
+
+/* Hide the carousel text when the screen is less than 600 pixels wide */
+@media (max-width: 600px) {
+	.carousel-caption {
+		display: none; 
+	}
+}
+
+.card {
+	color: #000000;
+}
+
+body {
+	background-color: #D0021B;
+	color: #FFFFFF;
+	font-family: "Helvetica Light", "Helvetica";
+	font-weight: 100;
+}
+
+.greeting {
+	padding-top: 40px;
+}
+
+.foodName {
+	font-size: 30px;
+}
+
+.foodDesc {
+	font-size: 10px;
+}
+
+.price {
+	font-size: 30px;
+	padding-top: 10px;
+}
+
+.foodNameModal {
+	font-size: 40px;
+}
+
+.creatorModal {
+	font-size: 20px;
+}
+
+.foodDescModal {
+	font-size: 15px;
+}
+
+.foodDescTitleModal {
+	font-size: 25px;
+}
+
+.priceModal {
+	font-size: 40px;
+	padding-top: 10px;
+}
+
+.arrivalModal {
+	font-size: 17px;
+}
+
+.imgCover {
+	object-fit: cover;
+}
+
+.foodImg {
+	padding-top: 20px;
+}
+
+.modal {
+	color: #000000;
+}
+
