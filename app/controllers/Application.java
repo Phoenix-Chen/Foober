@@ -45,7 +45,8 @@ public class Application extends Controller {
         return ok(
                 Routes.javascriptRouter("myJsRoutes",
                         controllers.routes.javascript.Application.getPosts(),
-                        controllers.routes.javascript.Application.getCookNameById()
+                        controllers.routes.javascript.Application.getCookNameById(),
+                        controllers.routes.javascript.Application.profile()
                 )
         );
     }
