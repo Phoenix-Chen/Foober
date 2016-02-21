@@ -1,0 +1,68 @@
+@(title: String)
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>@title</title>
+        
+        <!-- Bootstrap Core CSS -->
+        <link href="@routes.Assets.versioned("stylesheets/bootstrapcss/bootstrap.min.css")" rel="stylesheet">
+        
+        <!-- Custom CSS -->
+        <link href="@routes.Assets.versioned("stylesheets/newpost.css")" rel="stylesheet">
+        
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    </head>
+    <body>
+        <div class="row container">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="input-group">
+                    <span class="input-group-addon">Title:</span>
+                    <input type="text" class="form-control" placeholder="Chicken Fried Rice" id="title">
+                </div>
+                <div>
+                    <input type="file">
+                </div>
+                <select class="form-control" id="serving">
+                    <option value="Serving">Serving</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="text" id="price" class="form-control">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">Duration:</span>
+                    <input type="text" id="duration" class="form-control">
+                    <span class="input-group-addon">Hours</span>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">Desciption:</span>
+                    <input type="text" class="form-control" id="description">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">Ingradients:</span>
+                    <input type="text" class="form-control" id="ingradients">
+                </div>
+                <div class="col-md-2 col-md-offset-9">
+                    <button type="button" onclick="submit()" class="btn btn-default btn-lg">Submit</button>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- jQuery -->
+        <script src="@routes.Assets.versioned("javascripts/jquery-1.12.0.min.js")"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="@routes.Assets.versioned("javascripts/bootstrapjs/bootstrap.min.js")"></script>
+        
+        <!-- Custom Javascript-->
+        <script src="@routes.Assets.versioned("javascripts/newpost.js")"></script>
+    </body>
+</html>
