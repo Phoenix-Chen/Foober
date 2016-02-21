@@ -6,6 +6,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.*;
+import java.util.Arrays;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,10 +16,11 @@ public class mongodb
     static MongoClient mongoClient = new MongoClient("localhost", 27017);
     static MongoDatabase db = mongoClient.getDatabase("Foober");
 
+///*
 //    public static void main(String args[]) {
 //        MongoClient mongoClient = new MongoClient("localhost", 27017); //Exception
 //
-//        //@SuppressWarnings("deprecation")
+//        @SuppressWarnings("deprecation")
 //        db = mongoClient.getDatabase("Foober");
 //
 //        for (String name: db.listCollectionNames()) {
@@ -46,8 +48,8 @@ public class mongodb
 //            System.out.println(iterator.next().toJson());
 //        }
 //        System.out.println("###########");
-//
 //    }
+//*/
 
     //find that specifies the collection("cooks", "users", or "posts") and id(a String)
     public static Document find(String collection, String id)
@@ -97,12 +99,28 @@ public class mongodb
     }
 
     //find the fresh posts who can still be order
-    /*
     public static ArrayList<Document> findFreshPosts()
     {
         MongoCollection<Document> posts_coll = db.getCollection("posts");
-        //return posts_coll.aggregate(asList(new Document("$match", new Document("time", new Document("$gt", )))));
+        return posts_coll.aggregate(Array.asList(new Document("$match", new Document("status", true))));
     }
-    */
+
+    //user make an order, add the user id to the users array in the post
+    public static boolean makeOrder(String post_id, String user_id)
+    {
+        MongoCollection<Document> posts_coll = db.getCollection("posts");
+        Document doc = posts_coll.findOneAndUpdate(new Document("_id", post_id),
+                                                    new Document("$addToSet", new Document("posts", user_id)));
+
+        ArrayList<String> posts_array = (ArrayList<String>)doc.get("users");
+        if(posts_array.size() == doc.getInteger("serving"))
+        {
+            posts_coll.findOneAndUpdate(new Document("_id", post_id),
+                                        new Document("$set", new Document("status", false)));
+            return false;
+        }
+        return true;
+    }
+
 }
 
