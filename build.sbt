@@ -12,6 +12,10 @@ libraryDependencies ++= Seq(
   javaWs
 )
 
+val libraryDependencies = Seq(
+  "uk.co.panaxiom" %% "play-jongo" % "1.0.1-jongo1.2"
+)
+
 // Play provides two styles of routers, one expects its actions to be injected, the
 // other, legacy style, accesses its actions statically.
 routesGenerator := InjectedRoutesGenerator
