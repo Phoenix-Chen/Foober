@@ -3,6 +3,7 @@ package controllers;
  * Created by JASON on 2/20/16.
  */
 import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.*;
@@ -14,40 +15,38 @@ public class mongodb
     static MongoClient mongoClient = new MongoClient("localhost", 27017);
     static MongoDatabase db = mongoClient.getDatabase("Foober");
 
-///*
-//    public static void main(String args[]) {
-//        MongoClient mongoClient = new MongoClient("localhost", 27017); //Exception
-//
-//        @SuppressWarnings("deprecation")
-//        db = mongoClient.getDatabase("Foober");
-//
-//        for (String name: db.listCollectionNames()) {
-//            System.out.println("Collection Name: " + name);
-//            MongoCollection<Document> coll = db.getCollection(name);
-//            System.out.println("# of Data in Collection: " + coll.count());
-//        }
-//
-//        System.out.println("demonstrating find(collection, id)");
-//        System.out.println(find("users", "56c95f31dbe73c089dbdc992"));
-//        System.out.println("###########");
-//
-//        System.out.println("demonstrating find(collection)");
-//        Iterator<Document> i = find("users").iterator();
-//        while(i.hasNext())
-//        {
-//            System.out.println(i.next().toJson());
-//        }
-//        System.out.println("###########");
-//
-//        System.out.println("demonstrating findPosts(cook_id)");
-//        Iterator<Document> iterator = findPosts("56c94e8445b863f3bafd3c09").iterator();
-//        while(iterator.hasNext())
-//        {
-//            System.out.println(iterator.next().toJson());
-//        }
-//        System.out.println("###########");
-//    }
-//*/
+
+    public static void main(String args[]) {
+        MongoClient mongoClient = new MongoClient("localhost", 27017); //Exception
+
+        db = mongoClient.getDatabase("Foober");
+
+        for (String name: db.listCollectionNames()) {
+            System.out.println("Collection Name: " + name);
+            MongoCollection<Document> coll = db.getCollection(name);
+            System.out.println("# of Data in Collection: " + coll.count());
+        }
+
+        System.out.println("demonstrating find(collection, id)");
+        System.out.println(find("users", "56c95f31dbe73c089dbdc992"));
+        System.out.println("###########");
+
+        System.out.println("demonstrating find(collection)");
+        Iterator<Document> i = find("users").iterator();
+        while(i.hasNext())
+        {
+            System.out.println(i.next().toJson());
+        }
+        System.out.println("###########");
+
+        System.out.println("demonstrating findPosts(cook_id)");
+        Iterator<Document> iterator = findPosts("56c94e8445b863f3bafd3c09").iterator();
+        while(iterator.hasNext())
+        {
+            System.out.println(iterator.next().toJson());
+        }
+        System.out.println("###########");
+    }
 
     //find that specifies the collection("cooks", "users", or "posts") and id(a String)
     public static Document find(String collection, String id)
@@ -85,7 +84,6 @@ public class mongodb
         //find a specific cook
         Document cook = cooks_coll.find(new Document("_id", cook_id)).first();
 
-        System.out.println(cook.get("posts"));
         posts_array = (ArrayList<String>)cook.get("posts");
 
         for (int i = 0; i < posts_array.size(); i++)
@@ -100,13 +98,41 @@ public class mongodb
     public static ArrayList<Document> findFreshPosts()
     {
         MongoCollection<Document> posts_coll = db.getCollection("posts");
-        Iterator<Document> i = posts_coll.find(new Document("$match", new Document("status", true))).iterator();
+        FindIterable<Document> iterable = posts_coll.find(new Document(new Document("status", "true")));
+        Iterator<Document> i = iterable.iterator();
         ArrayList<Document> array = new ArrayList<>();
         while(i.hasNext())
         {
             array.add(i.next());
         }
 
+        return array;
+    }
+
+    public static ArrayList<Document> getPosts(String condition, String cook_id)
+    {
+        ArrayList<Document> array = new ArrayList<>();
+        ArrayList<String> posts_array;
+        String status;
+
+        MongoCollection<Document> cooks_coll = db.getCollection("cooks");
+        MongoCollection<Document> posts_coll = db.getCollection("posts");
+
+        if (condition == "fresh")
+            status = "true";
+        else
+            status = "false";
+
+        //find a specific cook
+        Document cook = cooks_coll.find(new Document("_id", cook_id)).first();
+        posts_array = (ArrayList<String>)cook.get("posts");
+
+        for (int i = 0; i < posts_array.size(); i++)
+        {
+            Document doc = posts_coll.find(new Document("_id", posts_array.get(i))).first();
+            if(doc.getString("status").equals(status))
+                array.add(doc);
+        }
         return array;
     }
 

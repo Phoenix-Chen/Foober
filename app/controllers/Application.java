@@ -22,7 +22,7 @@ public class Application extends Controller {
     public Result profile(String uId){ return ok(profile.render(uId)); }
 
     public Result getPosts() {
-        ArrayList<Document> arrayList = mongodb.find("posts");
+        ArrayList<Document> arrayList = mongodb.findFreshPosts();
         String ret = "[";
         Iterator<Document> i = arrayList.iterator();
         while(i.hasNext())
