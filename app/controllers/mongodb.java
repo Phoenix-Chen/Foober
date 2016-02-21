@@ -118,7 +118,7 @@ public class mongodb
         MongoCollection<Document> cooks_coll = db.getCollection("cooks");
         MongoCollection<Document> posts_coll = db.getCollection("posts");
 
-        if (condition == "fresh")
+        if (condition.equals("fresh"))
             status = "true";
         else
             status = "false";
