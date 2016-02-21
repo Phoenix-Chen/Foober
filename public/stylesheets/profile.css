@@ -70,6 +70,18 @@ body {
 	font-size: 20px;
 }
 
+.addDishTitle {
+	font-size: 30px;
+}
+
+.addDishInstructions {
+	font-size: 15px;
+}
+
+.dishName {
+	font-size: 20px;
+}
+
 .foodDescModal {
 	font-size: 15px;
 }
