@@ -15,8 +15,8 @@ public class Application extends Controller {
         return ok(dishes.render("Foober"));
     }
 
-    public Result newPost() {
-        return ok(newpost.render("New Post"));
+    public Result newPost(String cId,String json) {
+        return ok(mongodb.addPost(cId,json));
     }
 
     public Result profile(String uId){ return ok(profile.render(uId)); }
@@ -68,7 +68,8 @@ public class Application extends Controller {
                         controllers.routes.javascript.Application.getCookNameById(),
                         controllers.routes.javascript.Application.profile(),
                         controllers.routes.javascript.Application.getPostsByCook(),
-                        controllers.routes.javascript.Application.getImageById()
+                        controllers.routes.javascript.Application.getImageById(),
+                        controllers.routes.javascript.Application.newPost()
                 )
         );
     }

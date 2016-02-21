@@ -75,7 +75,7 @@ function incrementDishes() {
     document.getElementById("numberOfDishes").innerHTML = numPlates;
 }
 
-function postDish() {
+function postDish(cId) {
     var dishName = $('#nameOfDish').val();
     var dishNum = document.getElementById("numberOfDishes").innerHTML;
     var dishDescription = $('#descriptionOfDish').val();
@@ -140,6 +140,13 @@ function postDish() {
         }
     }
 
-    var finalString = "{\"title\":\""+dishName+"\",\"serving\":"+dishNum+",\"description\":\""+dishDescription+"\",\"ingradient\":\""+ingredients+"\"}";
+    var finalString = "{\"title\":\""+dishName+"\",\"serving\":"+dishNum+",\"description\":\""+dishDescription+"\",\"ingradient\":\""+ingredients+"\",\"cook_id\":\""+cId+"\"}";
+    
+    myJsRoutes.controllers.Application.newPost(cId,finalString).ajax({
+        success : function(success) {
+            
+            alert(success);
+        }
+    });
 }
 

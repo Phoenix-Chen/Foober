@@ -13,7 +13,7 @@ GET     /getcooknamebyid/:cId       controllers.Application.getCookNameById(cId:
 GET     /getpostsbycook/:cId/:condition      controllers.Application.getPostsByCook(cId: String, condition: String)
 GET     /getimagebyid/:cId          controllers.Application.getImageById(cId: String)
 
-POST    /newpost                    controllers.Application.newPost()
+POST    /newpost/:cId/:json         controllers.Application.newPost(cId: String, json: String)
 
 
 # Map static resources from the /public folder to the /assets URL path
