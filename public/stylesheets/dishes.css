@@ -1,4 +1,4 @@
-/* Remove the navbar's default margin-bottom and rounded borders */ 
+/* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
 	margin-bottom: 0;
 	border-radius: 0;
@@ -20,7 +20,7 @@ footer {
 /* Hide the carousel text when the screen is less than 600 pixels wide */
 @media (max-width: 600px) {
 	.carousel-caption {
-		display: none; 
+		display: none;
 	}
 }
 
@@ -65,7 +65,7 @@ body {
 }
 
 .foodDescTitleModal {
-	font-size: 25px;
+	/*font-size: 25px;*/
 }
 
 .priceModal {
@@ -92,5 +92,3 @@ body {
 .navLogo {
 	padding-top: 15px !important;
 }
-
-
