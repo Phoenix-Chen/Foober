@@ -49,3 +49,87 @@ function setPastPosts() {
         }
     });
 }
+
+function decrementDishes() {
+    var numPlates = parseInt(document.getElementById("numberOfDishes").innerHTML);
+    numPlates = numPlates - 1;
+    if(numPlates <= 0){
+        numPlates = 1;
+    }
+    document.getElementById("numberOfDishes").innerHTML = numPlates;
+}
+
+function incrementDishes() {
+    var numPlates = parseInt(document.getElementById("numberOfDishes").innerHTML);
+    numPlates = numPlates + 1;
+    document.getElementById("numberOfDishes").innerHTML = numPlates;
+}
+
+function postDish() {
+    var dishName = $('#nameOfDish').val();
+    var dishNum = document.getElementById("numberOfDishes").innerHTML;
+    var dishDescription = $('#descriptionOfDish').val();
+    var ingredients = "";
+    if(document.getElementById("peanuts").innerHTML.checked === true){
+        ingredients = "peanuts";
+    }
+    if(document.getElementById("treeNuts").checked){
+        if(ingredients === ""){
+            ingredients = "tree nuts";
+        }
+        else{
+            ingredients = ingredients + ",tree nuts";
+        }
+    }
+    if(document.getElementById("chocolate").checked){
+        if(ingredients === ""){
+            ingredients = "chocolate";
+        }
+        else{
+            ingredients = ingredients + ",chocolate";
+        }
+    }
+    if(document.getElementById("seafood").checked){
+        if(ingredients === ""){
+            ingredients = "seafood";
+        }
+        else{
+            ingredients = ingredients + ",seafood";
+        }
+    }
+    if(document.getElementById("gluten").checked){
+        if(ingredients === ""){
+            ingredients = "gluten";
+        }
+        else{
+            ingredients = ingredients + ",gluten";
+        }
+    }
+    if(document.getElementById("soy").checked){
+        if(ingredients === ""){
+            ingredients = "soy";
+        }
+        else{
+            ingredients = ingredients + ",soy";
+        }
+    }
+    if(document.getElementById("dairy").checked){
+        if(ingredients === ""){
+            ingredients = "dairy";
+        }
+        else{
+            ingredients = ingredients + ",dairy";
+        }
+    }
+    if(document.getElementById("eggs").checked){
+        if(ingredients === ""){
+            ingredients = "eggs";
+        }
+        else{
+            ingredients = ingredients + ",eggs";
+        }
+    }
+
+    var finalString = "{\"title\":\""+dishName+"\",\"serving\":"+dishNum+",\"description\":\""+dishDescription+"\",\"ingradient\":\""+ingredients+"\"}";
+}
+
