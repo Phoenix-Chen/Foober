@@ -109,6 +109,73 @@
 			</div>
 		</div>
 	</div><br>
+	
+	<!--Modal-->
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="addFoodModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div class="card-block">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="short-div addDishTitle">Share a new dish</div>
+								<div class="short-div addDishInstructions">Complete the following form to let your neighbors know what you've cooked!</div><br>
+								<div class="short-div dishName">Dish name</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+								<form>
+									<fieldset class="form-group">
+										<input type="text" class="form-control" name="lastname" id="nameOfDish"><br>
+										<div class="short-div dishName">How many plates are you making?</div>
+										<div class="addDishTitle"><input class="btn btn-default addDishTitle" type="button" value="-" onclick="decrementDishes()"><span id="numberOfDishes">5</span><input class="btn btn-default addDishTitle" type="button" value="+" onclick="incrementDishes()"></div>
+										<div class="short-div addDishInstructions">Describe your dish in a few sentences</div>
+										<textarea class="form-control" id="descriptionOfDish" rows="4"></textarea>
+										<br>
+										<div class="short-div addDishTitle">Food allergens</div>
+										<div class="short-div addDishInstructions">Be sure to check all boxes that may apply to your dish. Your dish contains:</div><br>
+										<div class="row text-left">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+												<input type="checkbox" id="peanuts" value="pea"> Peanuts <br>
+												<input type="checkbox" id="treeNuts" value="tree"> Tree nuts <br>
+												<input type="checkbox" id="chocolate" value="choc"> Chocolate <br>
+												<input type="checkbox" id="seafood" value="sea"> Seafood <br>
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+												<input type="checkbox" id="gluten" value="glut"> Gluten <br>
+												<input type="checkbox" id="soy" value="soy"> Soy <br>
+												<input type="checkbox" id="dairy" value="dairy"> Dairy <br>
+												<input type="checkbox" id="eggs" value="eggs"> Eggs <br>
+											</div>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center">
+								<!--Add code for drag/drop image here-->
+								<img src="@routes.Assets.versioned("images/Dropzone.png")" width=150px/>
+							</div>
+						</div><br>
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="pull-right">
+									<button type="button" class="btn btn-danger-outline" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+								<div class="pull-right">
+									<button type="button" class="btn btn-success-outline" onclick="postDish('@cId')">Post dish</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 
 	<!--Modal-->
 	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="foodModal">
