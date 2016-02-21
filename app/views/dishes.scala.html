@@ -11,7 +11,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
 	<link rel="stylesheet" href='@routes.Assets.versioned("stylesheets/dishes.css")'>
-	
+
 	<!-- Javascript Routes -->
     <script type="text/javascript" src='@routes.Application.javascriptRoutes()'></script>
 </head>
@@ -23,7 +23,7 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>                        
+					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">Foober</a>
 			</div>
@@ -40,11 +40,11 @@
 			</div>
 		</div>
 	</nav>
-	
-	<div class="container text-center">    
+
+	<div class="container text-center">
 		<div class="greeting"><h3>Good afternoon, here are some delicious dishes near you.</h3></div><br>
 		<div class="card-deck-wrapper" id="card-wrapper">
-			
+
 		</div>
 	</div><br>
 
@@ -88,17 +88,55 @@
 	</div><!-- /.modal -->
 
 
+	<!--Modal-->
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" id="orderModal" role="document">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body">
+					<img class="card-img-top img-responsive" src="http://placehold.it/150x80?text=IMAGE" style="width:100%" alt="Food pic">
+					<div class="card-block">
+						<div class="row">
+							<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+								<div class="short-div"><p style="font-size: 20px">Place a new order</p></div>
+								<div class="short-div">
+									<p>Where to deliver? <span style="font-size: 10px">(Please be specific)</span></p>
+									<textarea rows="4"></textarea>
+								</div>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-center">
+								<div class="priceModal" id="modal-price"></div>
+								<div class="arrivalModal">Arrives within 30 min</div>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-lg-7 col-md-7 col-sm-5 col-xs-7">
+								<div class="short-div foodDescTitleModal" id="modal-description"></div>
+								<div class="short-div foodDescModal"><p id="modal-ingradients"></p></div>
+							</div>
+							<div class="col-lg-5 col-md-5 col-sm-7 col-xs-5 imgCover"><img class="img-responsive foodImg" src="http://placehold.it/150x80?text=IMAGE" style="width:100%" alt="Food pic"></div>
+						</div>
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<div class="pull-right">
+									<button type="button" class="btn btn-success-outline">Order now</button>
+									<p class="card-text"><small class="text-muted">15 min left</small></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
 	<footer class="container-fluid text-center">
 		<p>© Foober 2016</p>
 	</footer>
-	
-	<!-- jQuery -->
-	<script src="@routes.Assets.versioned("javascripts/jquery-1.12.0.min.js")"></script>
 
 	<!-- Custom JavaScript -->
 	<script src="@routes.Assets.versioned("javascripts/dishes.js")"></script>
 
 </body>
 </html>
-
-
