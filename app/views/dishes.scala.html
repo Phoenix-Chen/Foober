@@ -114,7 +114,7 @@
 									<textarea rows="3" style="width: 100%"></textarea>
 
 									<div class="short-div" style="margin: 0"><p>Tip amount:</p></div>
-									<div class="addDishTitle"><input class="btn btn-default addDishTitle" type="button" value="-"> 20 % <input class="btn btn-default addDishTitle" type="button" value="+"></div>
+									<div class="addDishTitle"><input class="btn btn-default addDishTitle" type="button" value="-" onclick="decrementTip()"><span id='tipAmount'>20</span><input class="btn btn-default addDishTitle" type="button" value="+" onclick="incrementTip()"> %</div>
 									<div>
 										<p style="margin: 0">Few words to the chef:</p>
 										<input type="text" />
